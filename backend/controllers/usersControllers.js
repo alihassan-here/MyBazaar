@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
-const User = require("../../models/User");
-const { hashedPassword, createToken, comparePassword } = require("../../services/authServices");
+const User = require("../models/User");
+const { hashedPassword, createToken, comparePassword } = require("../services/authServices");
 
 
 //@route POST /api/register
