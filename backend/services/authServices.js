@@ -13,3 +13,7 @@ module.exports.createToken = (id, name) => {
     });
     return token;
 }
+
+module.exports.comparePassword = async (password, dbPassword) => {
+    return await bcrypt.compare(password, dbPassword);
+}
