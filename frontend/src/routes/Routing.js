@@ -3,6 +3,8 @@ import Private from "./Private";
 import Public from "./Public";
 import AdminLogin from "../screens/auth/AdminLogin";
 import Products from "../screens/dashboard/Products";
+import Categories from "../screens/dashboard/Categories";
+import CreateCategory from "../screens/dashboard/CreateCategory";
 
 const Routing = () => {
     return (
@@ -14,6 +16,12 @@ const Routing = () => {
                 <Route path="dashboard">
                     <Route path="products" element={<Private>
                         <Products />
+                    </Private>} />
+                    <Route path="categories" element={<Private>
+                        <Categories />
+                    </Private>} />
+                    <Route path="create-category" element={<Private>
+                        <CreateCategory />
                     </Private>} />
                 </Route>
             </Routes>
