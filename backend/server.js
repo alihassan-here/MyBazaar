@@ -1,6 +1,7 @@
 const express = require("express");
 const env = require("./config/envConfig");
 const cors = require("cors");
+const { logger, logEvents } = require('./middleware/logger');
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
@@ -10,6 +11,7 @@ const app = express();
 
 //database connection
 connectDB();
+app.use(logger)
 app.use(cors())
 
 //middleware
