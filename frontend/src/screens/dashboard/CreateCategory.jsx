@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import ScreenHeader from '../../components/ScreenHeader';
 import Wrapper from './Wrapper';
 import { useCreateMutation } from "../../store/services/categoryService";
+import { setSuccess } from '../../store/reducers/globalReducer';
 
 const CreateCategory = () => {
     const [state, setState] = useState("");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [saveCategory, data] = useCreateMutation();
+
     const errors = data?.error?.data?.errors ? data?.error?.data?.errors : [];
     const submitCategory = e => {
         e.preventDefault();
@@ -15,6 +20,7 @@ const CreateCategory = () => {
     }
     useEffect(() => {
         if (data?.isSuccess) {
+            dispatch(setSuccess(data?.data?.msg));
             navigate("/dashboard/categories");
         }
     }, [data?.isSuccess])
@@ -28,7 +34,7 @@ const CreateCategory = () => {
                 {
                     errors.length > 0 && errors.map((error, key) => (
                         <div key={key}>
-                            <p className="alert-danger">{error.msg}</p>
+                            <p className="alert-danger">{error.msg}!</p>
                         </div>
                     ))
                 }

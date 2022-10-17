@@ -13,10 +13,10 @@ class Category {
                 });
                 return res.status(201).json({ msg: "category has created successfully" });
             } else {
-                return res.status(401).json({ errors: [{ msg: `${name} category is already exist` }] });
+                return res.status(400).json({ errors: [{ msg: `${name} category is already exist` }] });
             }
         } else {
-            return res.status(401).json({ errors: errors.array() })
+            return res.status(400).json({ errors: errors.array() })
         }
     }
 }
