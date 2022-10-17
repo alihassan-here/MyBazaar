@@ -12,4 +12,7 @@
     .form-control{
         @apply bg-gray-900 p-3 rounded-sm outline-none w-full;
     }
+    .alert-danger{
+        @apply bg-red-100 text-red-700 p-3 mb-2 rounded-sm text-sm font-medium;
+    }
 }
