@@ -9,4 +9,6 @@ const router = express.Router();
 
 router.post("/create-category", [categoryValidations, Authorization.authorized], categoryController.create);
 
+router.get("/categories/:page", Authorization.authorized, categoryController.getAllCategories)
+
 module.exports = router;
