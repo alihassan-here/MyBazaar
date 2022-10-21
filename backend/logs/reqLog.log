@@ -1,0 +1,8 @@
+20221027	22:32:42	a8fd988b-fa69-4811-b3a6-5587a1146433	OPTIONS	/api/login	http://localhost:3000
+20221027	22:32:42	c7a7623a-f0b3-42f3-87c4-9279a3489d95	POST	/api/login	http://localhost:3000
+20221027	22:43:33	e0445612-0d56-49af-b261-52565c3a8288	OPTIONS	/api/categories/1	http://localhost:3000
+20221027	22:43:33	558ba850-473a-4217-b75b-c8316591217f	GET	/api/categories/1	http://localhost:3000
+20221027	22:43:49	c5b888c2-67ce-4869-be2d-5b280e98a4b1	OPTIONS	/api/categories/1	http://localhost:3000
+20221027	22:43:49	3fb04ad0-dd66-4bf3-8304-343ee458fa91	GET	/api/categories/1	http://localhost:3000
+20221027	22:44:18	36cc760b-3984-4eab-acb2-8d37f50b6765	OPTIONS	/api/categories/3	http://localhost:3000
+20221027	22:44:18	9d9ab8db-a519-4399-8f8a-706fa33d9d94	GET	/api/categories/3	http://localhost:3000

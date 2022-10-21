@@ -20,6 +20,9 @@ const Routing = () => {
                     <Route path="categories" element={<Private>
                         <Categories />
                     </Private>} />
+                    <Route path="categories/:page" element={<Private>
+                        <Categories />
+                    </Private>} />
                     <Route path="create-category" element={<Private>
                         <CreateCategory />
                     </Private>} />
