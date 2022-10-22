@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import authService from "./services/authService";
 import categoryService from "./services/categoryService";
 import authReducer from "./reducers/authReducer";
@@ -10,7 +10,8 @@ const Store = configureStore({
         [categoryService.reducerPath]: categoryService.reducer,
         "authReducer": authReducer,
         "globalReducer": globalReducer,
-    }
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(categoryService.middleware)
 });
 
 export default Store;
