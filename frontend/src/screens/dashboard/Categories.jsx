@@ -3,22 +3,35 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader";
 import Wrapper from "./Wrapper";
-import { clearMessage } from "../../store/reducers/globalReducer";
-import { useGetQuery } from "../../store/services/categoryService";
+import { clearMessage, setSuccess } from "../../store/reducers/globalReducer";
+import {
+  useGetQuery,
+  useDeleteCategoryMutation,
+} from "../../store/services/categoryService";
 import Spinner from "../../components/Spinner";
 import Pagination from "../../components/Pagination";
 
 const Categories = () => {
   let { page } = useParams();
-
   if (!page) {
     page = 1;
   }
   const { success } = useSelector((state) => state.globalReducer);
   const dispatch = useDispatch();
   const { data = [], isFetching } = useGetQuery(page);
+  const [removeCategory, response] = useDeleteCategoryMutation();
   // console.log(data, isLoading);
 
+  const deleteCategory = (id) => {
+    if (window.confirm("Are you really want to delete the category?")) {
+      removeCategory(id);
+    }
+  };
+  useEffect(() => {
+    if (response.isSuccess) {
+      dispatch(setSuccess(response.data.message));
+    }
+  }, [response?.data?.message]);
   useEffect(() => {
     return () => {
       dispatch(clearMessage());
@@ -65,7 +78,12 @@ const Categories = () => {
                         </Link>
                       </td>
                       <td className="p-3 capitalize text-sm font-normal text-gray-400">
-                        <button className="btn btn-danger">delete</button>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => deleteCategory(category._id)}
+                        >
+                          delete
+                        </button>
                       </td>
                     </tr>
                   ))}

@@ -16,7 +16,7 @@ class Category {
           .json({ msg: "category has created successfully" });
       } else {
         return res
-          .status(401)
+          .status(400)
           .json({ errors: [{ msg: `${name} category is already exist` }] });
       }
     } else {
@@ -64,14 +64,27 @@ class Category {
           });
         } else {
           return res
-            .status(401)
+            .status(400)
             .json({ errors: [{ msg: `${name} category is already exist` }] });
         }
       } else {
-        return res.status(401).json({ errors: errors.array() });
+        return res.status(400).json({ errors: errors.array() });
       }
     } catch (error) {
       console.log(error.message);
+    }
+  }
+  async deleteCategory(req, res) {
+    try {
+      const { id } = req.params;
+
+      await CategoryModel.deleteOne({ _id: id });
+      return res.status(200).json({
+        message: "Category has been deleted successfully!!",
+      });
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json("Internal Server Error!");
     }
   }
 }
