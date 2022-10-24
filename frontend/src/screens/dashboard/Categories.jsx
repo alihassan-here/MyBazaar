@@ -23,7 +23,7 @@ const Categories = () => {
     return () => {
       dispatch(clearMessage());
     };
-  }, [dispatch]);
+  }, []);
   return (
     <Wrapper>
       <ScreenHeader>

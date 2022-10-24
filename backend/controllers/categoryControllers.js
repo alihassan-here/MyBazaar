@@ -16,7 +16,7 @@ class Category {
           .json({ msg: "category has created successfully" });
       } else {
         return res
-          .status(400)
+          .status(401)
           .json({ errors: [{ msg: `${name} category is already exist` }] });
       }
     } else {
@@ -34,6 +34,42 @@ class Category {
         .limit(perPage)
         .sort({ updatedAt: -1 });
       return res.status(200).json({ categories: response, perPage, count });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  async fetchCategory(req, res) {
+    const { id } = req.params;
+    try {
+      const resp = await CategoryModel.findOne({ _id: id });
+      return res.status(200).json({ category: resp });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  async updateCategory(req, res) {
+    try {
+      const { id } = req.params;
+      const { name } = req.body;
+      const errors = validationResult(req);
+      if (errors.isEmpty()) {
+        const exist = await CategoryModel.findOne({ name });
+        if (!exist) {
+          const resp = await CategoryModel.updateOne(
+            { _id: id },
+            { $set: { name } }
+          );
+          return res.status(200).json({
+            message: "Your category has been updated!",
+          });
+        } else {
+          return res
+            .status(401)
+            .json({ errors: [{ msg: `${name} category is already exist` }] });
+        }
+      } else {
+        return res.status(401).json({ errors: errors.array() });
+      }
     } catch (error) {
       console.log(error.message);
     }

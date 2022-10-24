@@ -38,7 +38,7 @@ const Pagination = ({ page, count, perPage, path, theme }) => {
             }`}
             to={`/${path}/${page + 1}`}
           >
-            <i class="bi bi-chevron-double-right"></i>
+            <i className="bi bi-chevron-double-right"></i>
           </Link>
         </li>
       );
@@ -54,7 +54,7 @@ const Pagination = ({ page, count, perPage, path, theme }) => {
             }`}
             to={`/${path}/${page - 1}`}
           >
-            <i class="bi bi-chevron-double-left"></i>
+            <i className="bi bi-chevron-double-left"></i>
           </Link>
         </li>
       );
