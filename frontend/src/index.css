@@ -2,6 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "./styles/buttons.css";
+@import "./styles/form.css";
 
 @layer components {
   .form-control {

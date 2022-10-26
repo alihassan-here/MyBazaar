@@ -6,6 +6,7 @@ import Products from "../screens/dashboard/Products";
 import Categories from "../screens/dashboard/Categories";
 import CreateCategory from "../screens/dashboard/CreateCategory";
 import UpdateCategory from "../screens/dashboard/UpdateCategory";
+import CreateProduct from "../screens/dashboard/CreateProduct";
 
 const Routing = () => {
   return (
@@ -59,6 +60,14 @@ const Routing = () => {
             element={
               <Private>
                 <UpdateCategory />
+              </Private>
+            }
+          />
+          <Route
+            path="create-product"
+            element={
+              <Private>
+                <CreateProduct />
               </Private>
             }
           />

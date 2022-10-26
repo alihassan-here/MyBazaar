@@ -34,4 +34,10 @@ router.delete(
   Authorization.authorized,
   categoryController.deleteCategory
 );
+
+router.get(
+  "/allcategories",
+  Authorization.authorized,
+  categoryController.allCategories
+);
 module.exports = router;
