@@ -76,3 +76,13 @@
 20230215	22:29:55	91183ec8-7978-4368-8576-306d453a2c02	GET	/api/allcategories	http://localhost:3000
 20230215	22:31:38	b0757be2-b373-47d0-a9b1-b1a965c7bed8	OPTIONS	/api/allcategories	http://localhost:3000
 20230215	22:31:38	408ee9b0-199e-403f-ac14-44487e4c2fc7	GET	/api/allcategories	http://localhost:3000
+20221027	22:46:59	bd3bf394-8175-40a7-bc2a-7287d81356ed	OPTIONS	/api/allcategories	http://localhost:3000
+20221027	22:46:59	4ffb181e-b1b4-4b1e-aeb0-5b96bd4f8c04	GET	/api/allcategories	http://localhost:3000
+20221027	23:02:07	60bf0a51-0821-4c2d-9b2f-0aae1742bc1e	OPTIONS	/api/allcategories	http://localhost:3000
+20221027	23:02:07	95b59884-f454-47bd-a925-1cd955d47144	GET	/api/allcategories	http://localhost:3000
+20221027	23:10:20	09a19cdb-8fed-4020-9848-9fde8deb697d	OPTIONS	/api/allcategories	http://localhost:3000
+20221027	23:10:20	4582a654-95b5-4f05-84c2-8c70dbfbfc2e	GET	/api/allcategories	http://localhost:3000
+20221027	23:12:16	81df3db8-fa78-4dbf-a7f2-90a880c87ca2	OPTIONS	/api/allcategories	http://localhost:3000
+20221027	23:12:16	b955a989-c46a-4888-a0ed-2ab6d25ff909	GET	/api/allcategories	http://localhost:3000
+20221027	23:12:53	f1b52c80-9edb-4b2b-a2bf-91f0fa57d37b	OPTIONS	/api/allcategories	http://localhost:3000
+20221027	23:12:53	7fc3d4d6-8ca8-42bf-abcf-06ba14375902	GET	/api/allcategories	http://localhost:3000
