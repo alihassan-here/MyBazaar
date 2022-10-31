@@ -16,3 +16,5 @@
 20230301	23:44:22	526536ba-db64-4996-8b63-06a1bf94330f	GET	/api/allcategories	http://localhost:3000
 20230301	23:46:26	28c1e610-4ae9-4724-8007-5cfb17d78427	OPTIONS	/api/allcategories	http://localhost:3000
 20230301	23:46:26	6d07c3a9-a827-4d01-b5f9-1843ad5f3dd9	GET	/api/allcategories	http://localhost:3000
+20230302	23:00:03	55ea6b7e-d7ee-4737-9834-6d52f044a788	OPTIONS	/api/allcategories	http://localhost:3000
+20230302	23:00:03	c9987ddf-963d-49a8-8ab3-9f22daefc908	GET	/api/allcategories	http://localhost:3000

@@ -9,6 +9,8 @@ import Spinner from "../../components/Spinner";
 import Colors from "../../components/Colors";
 import SizesList from "../../components/SizesList";
 import ImagesPreview from "./ImagesPreview";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
@@ -41,6 +43,7 @@ const CreateProduct = () => {
     image2: "",
     image3: "",
   });
+  const [value, setValue] = useState("");
 
   const handleInput = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -221,6 +224,24 @@ const CreateProduct = () => {
                 id="image3"
                 className="input-file"
                 onChange={imageHandle}
+              />
+            </div>
+            <div className="w-full p-3">
+              <label htmlFor="description" className="label">
+                Description
+              </label>
+              <ReactQuill
+                id="description"
+                theme="snow"
+                value={value}
+                onChange={setValue}
+              />
+            </div>
+            <div className="w-full p-3">
+              <input
+                className="btn btn-indigo"
+                type="submit"
+                value="save product"
               />
             </div>
           </div>
