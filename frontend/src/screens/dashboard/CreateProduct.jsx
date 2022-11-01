@@ -11,6 +11,7 @@ import SizesList from "../../components/SizesList";
 import ImagesPreview from "./ImagesPreview";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useCreateProductMutation } from "../../store/services/productService";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
@@ -78,6 +79,19 @@ const CreateProduct = () => {
       reader.readAsDataURL(e.target.files[0]);
     }
   };
+
+  const [createNewProduct, response] = useCreateProductMutation();
+  const createProduct = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(state));
+    formData.append("sizes", JSON.stringify(sizeList));
+    formData.append("description", value);
+    formData.append("image1", state.image1);
+    formData.append("image2", state.image2);
+    formData.append("image3", state.image3);
+    createNewProduct(formData);
+  };
   return (
     <Wrapper>
       <ScreenHeader>
@@ -86,7 +100,7 @@ const CreateProduct = () => {
         </Link>
       </ScreenHeader>
       <div className="flex flex-wrap -mx-3">
-        <div className="w-full xl:w-8/12 p-3">
+        <form className="w-full xl:w-8/12 p-3" onSubmit={createProduct}>
           <div className="flex flex-wrap">
             <div className="w-full md:w-6/12 p-3">
               <label htmlFor="title" className="label">
@@ -245,7 +259,7 @@ const CreateProduct = () => {
               />
             </div>
           </div>
-        </div>
+        </form>
         <div className="w-full xl:w-4/12 p-3">
           <Colors colors={state.colors} deleteColor={deleteColor} />
           <SizesList list={sizeList} deleteSize={deleteSize} />

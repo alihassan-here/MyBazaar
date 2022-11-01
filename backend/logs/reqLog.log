@@ -18,3 +18,9 @@
 20230301	23:46:26	6d07c3a9-a827-4d01-b5f9-1843ad5f3dd9	GET	/api/allcategories	http://localhost:3000
 20230302	23:00:03	55ea6b7e-d7ee-4737-9834-6d52f044a788	OPTIONS	/api/allcategories	http://localhost:3000
 20230302	23:00:03	c9987ddf-963d-49a8-8ab3-9f22daefc908	GET	/api/allcategories	http://localhost:3000
+20221031	23:23:37	5d44f0b0-c041-48e2-8d90-62e2a5dbd1d7	OPTIONS	/api/allcategories	http://localhost:3000
+20221031	23:23:37	9c185b22-58b3-4cfd-b4dc-03ddd8b81489	GET	/api/allcategories	http://localhost:3000
+20221031	23:43:40	e30ef51b-dc9d-43f2-97ee-540fc4887ad9	OPTIONS	/api/create-product	http://localhost:3000
+20221031	23:43:40	883eec57-b2d4-4f6c-a77b-8c4e22b53bf8	POST	/api/create-product	http://localhost:3000
+20221031	23:45:31	b6de79cb-ad59-4f20-9bce-ed61becdad2e	OPTIONS	/api/create-product	http://localhost:3000
+20221031	23:45:31	bd114854-fa10-4206-8299-3233e5bbfffd	POST	/api/create-product	http://localhost:3000
