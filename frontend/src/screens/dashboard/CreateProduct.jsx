@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { TwitterPicker } from "react-color";
 import { v4 as uuidv4 } from "uuid";
+import toast, { Toaster } from "react-hot-toast";
 import ScreenHeader from "../../components/ScreenHeader";
 import Wrapper from "./Wrapper";
 import { useAllCategoriesQuery } from "../../store/services/categoryService";
@@ -12,6 +14,7 @@ import ImagesPreview from "./ImagesPreview";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useCreateProductMutation } from "../../store/services/productService";
+import { setSuccess } from "../../store/reducers/globalReducer";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
@@ -45,6 +48,9 @@ const CreateProduct = () => {
     image3: "",
   });
   const [value, setValue] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -92,6 +98,22 @@ const CreateProduct = () => {
     formData.append("image3", state.image3);
     createNewProduct(formData);
   };
+
+  useEffect(() => {
+    if (!response.isSuccess) {
+      response?.error?.data?.errors.map((err) => {
+        toast.error(err.msg);
+      });
+    }
+  }, [response?.error?.data?.errors]);
+
+  useEffect(() => {
+    if (response?.isSuccess) {
+      dispatch(setSuccess(response?.data?.msg));
+      navigate("/dashboard/products");
+    }
+  }, [response?.isSuccess]);
+
   return (
     <Wrapper>
       <ScreenHeader>
@@ -99,6 +121,7 @@ const CreateProduct = () => {
           <i className="bi bi-arrow-left-short"> Products list</i>
         </Link>
       </ScreenHeader>
+      <Toaster position="top-right" reverseOrder={true} />
       <div className="flex flex-wrap -mx-3">
         <form className="w-full xl:w-8/12 p-3" onSubmit={createProduct}>
           <div className="flex flex-wrap">
@@ -255,7 +278,8 @@ const CreateProduct = () => {
               <input
                 className="btn btn-indigo"
                 type="submit"
-                value="save product"
+                value={response.isLoading ? "loading..." : "save product"}
+                disabled={response.isLoading ? true : false}
               />
             </div>
           </div>

@@ -12,32 +12,32 @@ class Product {
         const parsedData = JSON.parse(fields.data);
         const errors = [];
         if (parsedData.title.trim().length === 0) {
-          errors.push({ title: "Title is required!" });
+          errors.push({ msg: "Title is required!" });
         }
         if (parseInt(parsedData.price) < 1) {
-          errors.push({ title: "Price should be above $1!" });
+          errors.push({ msg: "Price should be above $1!" });
         }
         if (parseInt(parsedData.discount) < 0) {
-          errors.push({ title: "Discount should not be negative!" });
+          errors.push({ msg: "Discount should not be negative!" });
         }
         if (parseInt(parsedData.stock) < 20) {
-          errors.push({ title: "Stock should be above 20!" });
+          errors.push({ msg: "Stock should be above 20!" });
         }
         if (parsedData.category.trim().length === 0) {
-          errors.push({ title: "Category is required!" });
+          errors.push({ msg: "Category is required!" });
         }
         if (fields.description.trim().length === 0) {
-          errors.push({ title: "Description is required!" });
+          errors.push({ msg: "Description is required!" });
         }
         if (errors.length === 0) {
           if (!files["image1"]) {
-            errors.push({ image1: "Image1 is required!" });
+            errors.push({ msg: "Image1 is required!" });
           }
           if (!files["image2"]) {
-            errors.push({ image2: "Image2 is required!" });
+            errors.push({ msg: "Image2 is required!" });
           }
           if (!files["image3"]) {
-            errors.push({ image3: "Image3 is required!" });
+            errors.push({ msg: "Image3 is required!" });
           }
           if (errors.length === 0) {
             const images = {};
@@ -61,9 +61,7 @@ class Product {
                 });
               } else {
                 const error = {};
-                error[`image${i + 1}`] = `image${
-                  i + 1
-                } has invalid ${extension} type`;
+                error[`msg`] = `image${i + 1} has invalid ${extension} type`;
                 errors.push(error);
               }
             }
