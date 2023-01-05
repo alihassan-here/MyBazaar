@@ -8,5 +8,6 @@ router.post(
   [Authorization.authorized],
   productController.create
 );
+router.get("/products/:page", Authorization.authorized, productController.get);
 
 module.exports = router;

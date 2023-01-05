@@ -10,3 +10,7 @@
 20230319	23:15:01	2fb21283-bb6a-4c55-89ee-efdcff7acaa6	POST	/api/create-product	http://localhost:3000
 20230319	23:30:59	c1ac5b64-4c69-4e5f-bf0d-c14faaee6a3d	OPTIONS	/api/create-product	http://localhost:3000
 20230319	23:30:59	73c160da-1490-4be4-999a-61a824361b61	POST	/api/create-product	http://localhost:3000
+20230104	23:37:00	2964a074-ea01-4906-adc5-6ca7691f32de	OPTIONS	/api/allcategories	http://localhost:3000
+20230104	23:37:00	7cdc3a82-f29a-4e53-8290-64cded3aa145	GET	/api/allcategories	http://localhost:3000
+20230104	23:43:12	afa7cd38-b741-40fa-ad55-7e1bd368dfbd	OPTIONS	/api/products/1	http://localhost:3000
+20230104	23:43:12	0e5d4359-6341-4884-84f6-6c7d569f6e5a	GET	/api/products/1	http://localhost:3000
