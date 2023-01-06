@@ -13,6 +13,7 @@ const Products = () => {
   }
   const { success } = useSelector((state) => state.globalReducer);
   const { data = [], isFetching } = useGetProductsQuery(page);
+  console.log(data);
   const dispatch = useDispatch();
   useEffect(() => {
     if (success) {

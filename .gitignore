@@ -1,2 +1,5 @@
 node_modules
 .env
+frontend/public/images
+backend/logs
+reqLog.log
