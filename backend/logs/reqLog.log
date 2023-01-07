@@ -14,3 +14,15 @@
 20230416	14:31:27	2026abff-64dc-4668-8376-9e0fafab0a45	POST	/api/create-product	http://localhost:3000
 20230416	14:31:33	285dc9b1-ed97-428e-9e36-69530853dbe2	OPTIONS	/api/products/1	http://localhost:3000
 20230416	14:31:33	0e25cdef-e327-40ef-903c-6b3ef058a023	GET	/api/products/1	http://localhost:3000
+20230106	15:16:06	57d5a602-860b-4616-89aa-7183a9e35a9c	OPTIONS	/api/products/1	http://localhost:3000
+20230106	15:16:06	b373949f-9d2f-4a33-9f42-45c1f5bbdcad	GET	/api/products/1	http://localhost:3000
+20230106	15:17:26	1c7428cc-3da0-4071-873c-5bd4d8b30124	OPTIONS	/api/products/1	http://localhost:3000
+20230106	15:17:26	28e84dae-241d-4ad2-ba79-f887875ba6f1	GET	/api/products/1	http://localhost:3000
+20230106	15:17:57	fdd8122a-825e-4008-a5d2-c799326c70d7	OPTIONS	/api/products/1	http://localhost:3000
+20230106	15:17:57	d01a251b-744a-4cfc-a19f-3283f46e8373	GET	/api/products/1	http://localhost:3000
+20230106	15:19:24	b26e429a-aa27-41ba-869d-0fbb86194649	OPTIONS	/api/products/1	http://localhost:3000
+20230106	15:19:24	5a83585d-edb3-4106-b43e-e9c825fa09cb	GET	/api/products/1	http://localhost:3000
+20230106	15:32:39	a215743a-66d7-49a2-91da-8b8bcd872fd5	OPTIONS	/api/products/1	http://localhost:3000
+20230106	15:32:39	008d4752-be96-4000-852c-5c918d2d113e	GET	/api/products/1	http://localhost:3000
+20230106	15:33:43	bba841c7-1cfc-48ef-b397-7c578b9702f4	OPTIONS	/api/products/1	http://localhost:3000
+20230106	15:33:43	3e833534-2cee-4714-9616-2a95a964bedd	GET	/api/products/1	http://localhost:3000
