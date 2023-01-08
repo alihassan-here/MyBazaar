@@ -8,6 +8,15 @@ router.post(
   [Authorization.authorized],
   productController.create
 );
-router.get("/products/:page", Authorization.authorized, productController.get);
+router.get(
+  "/products/:page",
+  Authorization.authorized,
+  productController.getProducts
+);
+router.get(
+  "/product/:id",
+  Authorization.authorized,
+  productController.getProduct
+);
 
 module.exports = router;

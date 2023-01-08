@@ -99,7 +99,7 @@ class Product {
       }
     });
   }
-  async get(req, res) {
+  async getProducts(req, res) {
     const { page } = req.params;
     const perPage = 5;
     const skip = (page - 1) * perPage;
@@ -112,6 +112,20 @@ class Product {
       return res.status(200).json({ products: response, perPage, count });
     } catch (error) {
       console.log(error.message);
+    }
+  }
+  async getProduct(req, res) {
+    const { id } = req.params;
+    try {
+      const product = await ProductModel.findOne({ _id: id }).select([
+        "-image1",
+        "-image2",
+        "-image3",
+      ]);
+      return res.status(200).json(product);
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({ error: error.message });
     }
   }
 }
