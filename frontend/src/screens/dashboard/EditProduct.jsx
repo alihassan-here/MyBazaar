@@ -15,13 +15,12 @@ import "react-quill/dist/quill.snow.css";
 import { setSuccess } from "../../store/reducers/globalReducer";
 import {
   useGetProductQuery,
-  useCreateProductMutation,
+  useUpdateProductMutation,
 } from "../../store/services/productService";
 
 const EditProduct = () => {
   const { id } = useParams();
   const { data: product, isFetching: fetching } = useGetProductQuery(id);
-  console.log(product);
   const { data = [], isFetching } = useAllCategoriesQuery();
   const [state, setState] = useState({
     title: "",
@@ -73,14 +72,11 @@ const EditProduct = () => {
     setSizeList(filtered);
   };
 
-  const [createNewProduct, response] = useCreateProductMutation();
+  const [updateProduct, response] = useUpdateProductMutation();
   const createProduct = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("data", JSON.stringify(state));
-    formData.append("sizes", JSON.stringify(sizeList));
-    formData.append("description", value);
-    createNewProduct(formData);
+    console.log(state);
+    updateProduct({ ...state, sizes: sizeList, description: value });
   };
 
   useEffect(() => {

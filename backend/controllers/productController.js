@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const path = require("path");
 const ProductModel = require("../models/Product");
+const { validationResult } = require("express-validator");
 class Product {
   async create(req, res) {
     const form = formidable({ multiples: true });
@@ -123,6 +124,48 @@ class Product {
         "-image3",
       ]);
       return res.status(200).json(product);
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({ error: error.message });
+    }
+  }
+  async updateProduct(req, res) {
+    console.log(req.body);
+    const errors = validationResult(req);
+    try {
+      if (errors.isEmpty()) {
+        const {
+          _id,
+          title,
+          price,
+          discount,
+          stock,
+          colors,
+          sizes,
+          description,
+          category,
+        } = req.body;
+        const response = await ProductModel.updateOne(
+          { _id },
+          {
+            $set: {
+              title,
+              price,
+              discount,
+              stock,
+              category,
+              colors,
+              sizes,
+              description,
+            },
+          }
+        );
+        return res.status(200).json({ msg: "Product has updated", response });
+      } else {
+        return res.status(400).json({ errors: errors.array() });
+      }
+      console.log(req.body);
+      // return res.status(200).json(product);
     } catch (error) {
       console.log(error.message);
       return res.status(500).json({ error: error.message });

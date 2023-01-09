@@ -17,8 +17,18 @@ const productService = createApi({
       createProduct: builder.mutation({
         query: (data) => {
           return {
-            url: "/create-product",
+            url: "/product",
             method: "POST",
+            body: data,
+          };
+        },
+        invalidatesTags: ["products"],
+      }),
+      updateProduct: builder.mutation({
+        query: (data) => {
+          return {
+            url: `/product`,
+            method: "PUT",
             body: data,
           };
         },
@@ -50,6 +60,7 @@ export const {
   useCreateProductMutation,
   useGetProductsQuery,
   useGetProductQuery,
+  useUpdateProductMutation,
 } = productService;
 
 export default productService;
