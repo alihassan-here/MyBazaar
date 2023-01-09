@@ -164,8 +164,30 @@ class Product {
       } else {
         return res.status(400).json({ errors: errors.array() });
       }
-      console.log(req.body);
-      // return res.status(200).json(product);
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({ error: error.message });
+    }
+  }
+  async deleteProduct(req, res) {
+    const { id } = req.params;
+    try {
+      const product = await ProductModel.findById({ _id: id });
+      [1, 2, 3].forEach((number) => {
+        let key = `image${number}`;
+        let image = product[key];
+        let __dirname = path.resolve();
+        let imagePath = __dirname + `/../frontend/public/images/${image}`;
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            throw new Error(err);
+          }
+        });
+      });
+      await ProductModel.remove({ _id: id });
+      return res
+        .status(200)
+        .json({ msg: "Product has been deleted successfully" });
     } catch (error) {
       console.log(error.message);
       return res.status(500).json({ error: error.message });

@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { clearMessage } from "../../store/reducers/globalReducer";
 import Wrapper from "./Wrapper";
-import { useGetProductsQuery } from "../../store/services/productService";
+import {
+  useGetProductsQuery,
+  useDeleteProductMutation,
+} from "../../store/services/productService";
 import ScreenHeader from "../../components/ScreenHeader";
 import Spinner from "../../components/Spinner";
 import Pagination from "../../components/Pagination";
@@ -16,7 +19,8 @@ const Products = () => {
   }
   const { success } = useSelector((state) => state.globalReducer);
   const { data = [], isFetching } = useGetProductsQuery(page);
-  console.log(data);
+  const [delProduct, response] = useDeleteProductMutation();
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (success) {
@@ -26,6 +30,12 @@ const Products = () => {
       dispatch(clearMessage());
     };
   }, []);
+
+  const deleteProduct = (id) => {
+    if (window.confirm("Are you sure, you want to delete this product")) {
+      delProduct(id);
+    }
+  };
   return (
     <Wrapper>
       <ScreenHeader>
@@ -88,12 +98,12 @@ const Products = () => {
                       </Link>
                     </td>
                     <td className="p-3 capitalize text-sm font-normal text-gray-400">
-                      <button
-                        className="btn btn-danger"
-                        // onClick={() => deleteCategory(product._id)}
+                      <span
+                        className="btn btn-danger cursor-pointer"
+                        onClick={() => deleteProduct(product._id)}
                       >
                         delete
-                      </button>
+                      </span>
                     </td>
                   </tr>
                 ))}

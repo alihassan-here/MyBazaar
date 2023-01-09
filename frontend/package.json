@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "currency-formatter": "^1.5.9",
     "framer-motion": "^7.5.3",
-    "html-react-parser": "^3.0.4",
+    "html-react-parser": "^3.0.16",
     "html-to-formatted-text": "^2.7.0",
     "html-to-text": "^8.2.1",
     "html2plaintext": "^2.1.4",
