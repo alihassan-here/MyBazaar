@@ -10,14 +10,17 @@ import CreateProduct from "../screens/dashboard/CreateProduct";
 import EditProduct from "../screens/dashboard/EditProduct";
 import Home from "../screens/home/Home.jsx";
 import Login from "../screens/home/auth/Login";
+import Register from "../screens/home/auth/Register";
+import Dashboard from "../screens/users/Dashboard";
 
 const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/lgoin" element={<Login />} />
-
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/user" element={<Dashboard />} />
         <Route path="auth">
           <Route
             path="admin-login"

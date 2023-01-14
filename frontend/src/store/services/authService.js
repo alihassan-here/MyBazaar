@@ -16,10 +16,32 @@ const authService = createApi({
           };
         },
       }),
+      userRegister: builder.mutation({
+        query: (data) => {
+          return {
+            url: "/register",
+            method: "POST",
+            body: data,
+          };
+        },
+      }),
+      userLogin: builder.mutation({
+        query: (data) => {
+          return {
+            url: "/login",
+            method: "POST",
+            body: data,
+          };
+        },
+      }),
     };
   },
 });
 
-export const { useAuthLoginMutation } = authService;
+export const {
+  useAuthLoginMutation,
+  useUserRegisterMutation,
+  useUserLoginMutation,
+} = authService;
 
 export default authService;
