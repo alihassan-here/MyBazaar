@@ -40,4 +40,7 @@ router.get(
   Authorization.authorized,
   categoryController.allCategories
 );
+
+router.get("/random-categories", categoryController.randomCategory);
+
 module.exports = router;
