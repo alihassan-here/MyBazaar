@@ -35,11 +35,7 @@ router.delete(
   categoryController.deleteCategory
 );
 
-router.get(
-  "/allcategories",
-  Authorization.authorized,
-  categoryController.allCategories
-);
+router.get("/allcategories", categoryController.allCategories);
 
 router.get("/random-categories", categoryController.randomCategory);
 
