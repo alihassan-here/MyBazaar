@@ -3,6 +3,7 @@ const router = express.Router();
 const Authorization = require("../services/Authorization");
 const productController = require("../controllers/productController");
 const productValidations = require("../validations/productValidations");
+const homeProducts = require("../controllers/homeProducts");
 
 router.post("/product", [Authorization.authorized], productController.create);
 router.get(
@@ -25,5 +26,7 @@ router.delete(
   [Authorization.authorized],
   productController.deleteProduct
 );
+
+router.get("/cat-products/:name/:page", homeProducts.catProducts);
 
 module.exports = router;

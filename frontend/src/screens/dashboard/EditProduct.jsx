@@ -17,7 +17,7 @@ import {
   useGetProductQuery,
   useUpdateProductMutation,
 } from "../../store/services/productService";
-import parser from "html-react-parser";
+import html2text from "html2plaintext";
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -98,7 +98,7 @@ const EditProduct = () => {
     if (!fetching) {
       setState(product);
       setSizeList(product.sizes);
-      setValue(parser(product.description));
+      setValue(html2text(product.description));
     }
   }, [product]);
 
