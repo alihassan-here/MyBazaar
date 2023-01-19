@@ -15,6 +15,7 @@ import Dashboard from "../screens/users/Dashboard";
 import UserRoute from "../routes/UserRoute";
 import UserAuthRoute from "../routes/UserAuthRoute";
 import CatProducts from "../screens/home/CatProduct";
+import Product from "../screens/home/Product";
 
 const Routing = () => {
   return (
@@ -23,6 +24,7 @@ const Routing = () => {
         <Route path="/" element={<Home />} />
         <Route path="/cat-products/:name" element={<CatProducts />} />
         <Route path="/cat-products/:name/:page" element={<CatProducts />} />
+        <Route path="product/:id" element={<Product />} />
         <Route element={<UserAuthRoute />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

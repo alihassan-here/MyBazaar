@@ -11,11 +11,7 @@ router.get(
   Authorization.authorized,
   productController.getProducts
 );
-router.get(
-  "/product/:id",
-  Authorization.authorized,
-  productController.getProduct
-);
+router.get("/product/:id", productController.getProduct);
 router.put(
   "/product",
   [Authorization.authorized, productValidations],

@@ -118,11 +118,7 @@ class Product {
   async getProduct(req, res) {
     const { id } = req.params;
     try {
-      const product = await ProductModel.findOne({ _id: id }).select([
-        "-image1",
-        "-image2",
-        "-image3",
-      ]);
+      const product = await ProductModel.findOne({ _id: id });
       return res.status(200).json(product);
     } catch (error) {
       console.log(error.message);
