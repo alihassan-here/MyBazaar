@@ -1,28 +1,38 @@
 const ProductModel = require("../models/Product");
 class HomeProducts {
   async catProducts(req, res) {
-    const { name, page } = req.params;
-    const perPage = 10;
+    const { name, page, keyword } = req.params;
+    const perPage = 12;
     const skip = (page - 1) * perPage;
-    try {
-      const count = await ProductModel.find({
-        category: name,
-      })
+    const options = name
+      ? { category: name }
+      : keyword && { title: { $regex: `${keyword}`, $options: "i" } };
+    if (page) {
+      try {
+        const count = await ProductModel.find({
+          ...options,
+        })
+          .where("stock")
+          .gt(0)
+          .countDocuments();
+        const response = await ProductModel.find({ ...options })
+          .where("stock")
+          .gt(0)
+          .skip(skip)
+          .limit(perPage)
+          .sort({ updatedAt: -1 });
+        return res.status(200).json({ products: response, perPage, count });
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
+      const response = await ProductModel.find({ ...options })
         .where("stock")
         .gt(0)
-        .countDocuments();
-      const response = await ProductModel.find({ category: name })
-        .where("stock")
-        .gt(0)
-        .skip(skip)
-        .limit(perPage)
+        .limit(4)
         .sort({ updatedAt: -1 });
-      return res.status(200).json({ products: response, perPage, count });
-    } catch (error) {
-      console.log(error.message);
-      return res.status(500).json({ error: error.message });
+      return res.status(200).json({ products: response });
     }
   }
 }
-
 module.exports = new HomeProducts();

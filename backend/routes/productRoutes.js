@@ -23,6 +23,6 @@ router.delete(
   productController.deleteProduct
 );
 
-router.get("/cat-products/:name/:page", homeProducts.catProducts);
+router.get("/cat-products/:name/:page?", homeProducts.catProducts);
 
 module.exports = router;
