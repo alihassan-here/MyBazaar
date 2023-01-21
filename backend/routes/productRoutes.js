@@ -25,4 +25,6 @@ router.delete(
 
 router.get("/cat-products/:name/:page?", homeProducts.catProducts);
 
+router.get("/search-products/:keyword/:page", homeProducts.catProducts);
+
 module.exports = router;
