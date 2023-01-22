@@ -17,6 +17,7 @@ import UserAuthRoute from "../routes/UserAuthRoute";
 import CatProducts from "../screens/home/CatProduct";
 import Product from "../screens/home/Product";
 import SearchProducts from "../screens/home/SearchProducts";
+import Cart from "../screens/home/Cart";
 
 const Routing = () => {
   return (
@@ -30,6 +31,7 @@ const Routing = () => {
           path="search-products/:keyword/:page"
           element={<SearchProducts />}
         />
+        <Route path="cart" element={<Cart />} />
         <Route element={<UserAuthRoute />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
