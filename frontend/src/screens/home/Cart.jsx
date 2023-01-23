@@ -13,7 +13,7 @@ import {
   removeItem,
 } from "../../store/reducers/cartReducer";
 import { Link } from "react-router-dom";
-// import { useSendPaymentMutation } from "../../store/services/paymentService";
+import { useSendPaymentMutation } from "../../store/services/paymentService";
 
 const Cart = () => {
   const { cart, total } = useSelector((state) => state.cartReducer);
@@ -32,21 +32,21 @@ const Cart = () => {
     }
   };
   const navigate = useNavigate();
-  //   const [doPayment, response] = useSendPaymentMutation();
-  //   console.log("payment response", response);
+  const [doPayment, response] = useSendPaymentMutation();
+  console.log("payment response", response);
   console.log(user);
-  //   const pay = () => {
-  //     if (userToken) {
-  //       doPayment({ cart, id: user.id });
-  //     } else {
-  //       navigate("/login");
-  //     }
-  //   };
-  //   useEffect(() => {
-  //     if (response?.isSuccess) {
-  //       window.location.href = response?.data?.url;
-  //     }
-  //   }, [response]);
+  const pay = () => {
+    if (userToken) {
+      doPayment({ cart, id: user.id });
+    } else {
+      navigate("/login");
+    }
+  };
+  useEffect(() => {
+    if (response?.isSuccess) {
+      window.location.href = response?.data?.url;
+    }
+  }, [response]);
 
   return (
     <>
@@ -137,9 +137,9 @@ const Cart = () => {
                 </span>
                 <button
                   className="btn bg-indigo-600 text-sm font-medium py-2.5"
-                  //   onClick={pay}
+                  onClick={pay}
                 >
-                  {/* {response.isLoading ? "Loading..." : "checkout"} */}
+                  {response.isLoading ? "Loading..." : "checkout"}
                 </button>
               </div>
             </div>
