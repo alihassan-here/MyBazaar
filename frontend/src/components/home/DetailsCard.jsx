@@ -49,6 +49,7 @@ const DetailsCard = ({ product }) => {
       dispatch(addCart(newProduct));
       cartItems.push(newProduct);
       localStorage.setItem("cart", JSON.stringify(cartItems));
+      toast.success(`${newProduct.title} added to cart!`);
     } else {
       toast.error(`${newProduct.title} is already in cart`);
       return;
