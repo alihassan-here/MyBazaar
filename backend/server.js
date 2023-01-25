@@ -15,6 +15,15 @@ connectDB();
 app.use(logger);
 app.use(cors());
 
+app.post(
+  "/api/webhook",
+  express.json({
+    verify: (req, res, buf) => {
+      req.rawBody = buf.toString();
+    },
+  })
+);
+
 //middleware
 app.use(express.json());
 
