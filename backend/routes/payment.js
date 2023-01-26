@@ -11,4 +11,6 @@ router.post(
   paymentController.checkOutSession
 );
 
+router.get("/verify-payment/:id", paymentController.paymentVerify);
+
 module.exports = router;

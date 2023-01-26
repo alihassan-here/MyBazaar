@@ -83,7 +83,7 @@ class PaymentController {
       event = stripe.webhooks.constructEvent(
         request.rawBody,
         sig,
-        process.env.ENDPOINTSECRET
+        process.env.ENDPOINT_SECRET
       );
     } catch (err) {
       console.log(err.message);
@@ -136,6 +136,18 @@ class PaymentController {
 
     // Return a 200 response to acknowledge receipt of the event
     response.send();
+  }
+  async paymentVerify(req, res) {
+    const { id } = req.params;
+    try {
+      const session = await stripe.checkout.sessions.retrieve(id);
+      return res.status(200).json({
+        msg: "Your payment has verfied successfully",
+        status: session.payment_status,
+      });
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
   }
 }
 module.exports = new PaymentController();
