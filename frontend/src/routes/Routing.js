@@ -18,6 +18,7 @@ import CatProducts from "../screens/home/CatProduct";
 import Product from "../screens/home/Product";
 import SearchProducts from "../screens/home/SearchProducts";
 import Cart from "../screens/home/Cart";
+import Orders from "../screens/dashboard/Orders";
 
 const Routing = () => {
   return (
@@ -114,7 +115,10 @@ const Routing = () => {
               </Private>
             }
           />
+          <Route path="orders" element={<Orders />} />
+          <Route path="orders/:page" element={<Orders />} />
         </Route>
+        <Route path="*" element={<p>Path not resolved</p>} />
       </Routes>
     </BrowserRouter>
   );
