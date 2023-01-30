@@ -9,5 +9,10 @@ router.get(
   authorization.authorized,
   orderController.getOrders
 );
+router.get(
+  "/order-details/:id",
+  authorization.authorized,
+  orderController.orderDetails
+);
 
 module.exports = router;
