@@ -14,5 +14,10 @@ router.get(
   authorization.authorized,
   orderController.orderDetails
 );
+router.put(
+  "/order-deliver/:id",
+  authorization.authorized,
+  orderController.deliverOrder
+);
 
 module.exports = router;
