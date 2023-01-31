@@ -1,4 +1,7 @@
 import { useParams, Link } from "react-router-dom";
+import { useRef } from "react";
+import ReactToPrint from "react-to-print";
+import { BsPrinter } from "react-icons/bs";
 import currency from "currency-formatter";
 import moment from "moment";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
@@ -13,6 +16,7 @@ import { discount } from "../../utils/discount";
 
 const OrderDetails = () => {
   const { id } = useParams();
+  const componentRef = useRef();
   const { data, isFetching } = useDetailsQuery(id);
   console.log(data);
   const total =
@@ -33,6 +37,16 @@ const OrderDetails = () => {
           </Link>
           <span className="ml-4"> Order Details</span>
           <span className="ml-4">
+            <ReactToPrint
+              trigger={() => (
+                <button className="flex items-center btn bg-indigo-600 py-1 text-sm font-semibold px-3">
+                  <BsPrinter /> <span className="ml-2">print</span>
+                </button>
+              )}
+              content={() => componentRef.current}
+            />
+          </span>
+          <span className="ml-4">
             {!isFetching && !data?.details?.status && (
               <button
                 className="btn bg-orange-600 py-1 text-sm font-semibold px-3"
@@ -45,7 +59,7 @@ const OrderDetails = () => {
         </div>
       </ScreenHeader>
       {!isFetching ? (
-        <div>
+        <div ref={componentRef}>
           <h3 className="capitalize text-gray-400">
             order number:{" "}
             <span className="text-lg text-gray-300 ml-4">
