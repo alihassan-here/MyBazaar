@@ -12,7 +12,6 @@ router.post(
 
 router.post(
   "/webhook",
-  authorization.authorized,
   express.raw({ type: "application/json" }),
   paymentController.checkOutSession
 );

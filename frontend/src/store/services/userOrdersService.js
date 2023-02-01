@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const orderService = createApi({
-  reducerPath: "orders",
+const userOrdersService = createApi({
+  reducerPath: "user-orders",
   tagTypes: "orders",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3060/api/",
     prepareHeaders: (headers, { getState }) => {
       const reducers = getState();
-      const token = reducers?.authReducer?.adminToken;
+      const token = reducers?.authReducer?.userToken;
       headers.set("authorization", token ? `Bearer ${token}` : "");
       return headers;
     },
@@ -15,9 +15,9 @@ const orderService = createApi({
   endpoints: (builder) => {
     return {
       getOrders: builder.query({
-        query: (page) => {
+        query: (data) => {
           return {
-            url: `/orders?page=${page}`,
+            url: `/orders?page=${data.page}&userId=${data.userId}`,
             method: "GET",
           };
         },
@@ -32,11 +32,21 @@ const orderService = createApi({
         },
         providesTags: ["orders"],
       }),
-      deliverOrder: builder.mutation({
+      receivedOrder: builder.mutation({
         query: (id) => {
           return {
-            url: `/order-deliver/${id}`,
+            url: `/order-update?id=${id}&status=received`,
             method: "PUT",
+          };
+        },
+        invalidatesTags: ["orders"],
+      }),
+      postReview: builder.mutation({
+        query: (body) => {
+          return {
+            url: `/add-review`,
+            method: "POST",
+            body,
           };
         },
         invalidatesTags: ["orders"],
@@ -44,6 +54,10 @@ const orderService = createApi({
     };
   },
 });
-export const { useGetOrdersQuery, useDetailsQuery, useDeliverOrderMutation } =
-  orderService;
-export default orderService;
+export const {
+  useGetOrdersQuery,
+  useDetailsQuery,
+  useReceivedOrderMutation,
+  usePostReviewMutation,
+} = userOrdersService;
+export default userOrdersService;
