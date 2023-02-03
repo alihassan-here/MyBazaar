@@ -16,7 +16,7 @@ class Orders {
         .populate("userId", "-password -createdAt -updatedAt -admin")
         .skip(skip)
         .limit(perPage)
-        .sort({ updatedAt: -1 });
+        .sort({ createdAt: -1 });
       return res.status(200).json({ orders: response, perPage, count });
     } catch (error) {
       console.log(error.message);
@@ -37,16 +37,23 @@ class Orders {
       return res.status(500).json({ errors: error });
     }
   }
-  async deliverOrder(req, res) {
-    const { id } = req.params;
+  async updateOrder(req, res) {
+    const { id, status } = req.query;
+    let option = "";
+    if (status === "delivered") {
+      option = { status: true };
+    } else if (status === "received") {
+      option = { received: true };
+    }
     try {
-      const updatedProduct = await OrderModel.findByIdAndUpdate(
-        id,
-        { status: true },
-        { new: true }
-      );
+      const updatedProduct = await OrderModel.findByIdAndUpdate(id, option, {
+        new: true,
+      });
       return res.status(200).json({
-        msg: "Product has been sent to customer and it's on the way right now",
+        msg:
+          status === "delivered"
+            ? "Order has delivered"
+            : status === "received" && "Order received",
       });
     } catch (error) {
       console.log(error.message);

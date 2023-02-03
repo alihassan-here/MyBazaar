@@ -11,9 +11,9 @@ router.get(
   orderController.orderDetails
 );
 router.put(
-  "/order-deliver/:id",
+  "/order-update",
   authorization.authorized,
-  orderController.deliverOrder
+  orderController.updateOrder
 );
 
 module.exports = router;
