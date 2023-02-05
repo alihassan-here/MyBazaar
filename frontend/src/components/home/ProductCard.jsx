@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AiFillStar } from "react-icons/ai";
 const ProductCard = ({ product }) => {
+  console.log({ product });
   const percentage = product.discount / 100;
   const discountPrice = product.price - product.price * percentage;
   let result = 0;

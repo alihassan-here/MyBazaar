@@ -1,4 +1,8 @@
 const OrderModel = require("../models/Order");
+const ReviewModel = require("../models/Review");
+const { validationResult } = require("express-validator");
+const ProductModel = require("../models/Product");
+
 class Orders {
   async getOrders(req, res) {
     const query = req.query;
@@ -58,6 +62,32 @@ class Orders {
     } catch (error) {
       console.log(error.message);
       return res.status(500).json({ errors: error });
+    }
+  }
+  async createRating(req, res) {
+    const errors = validationResult(req);
+    const { rating, message, user, product, id } = req.body;
+    console.log(req.body);
+    if (errors.isEmpty()) {
+      try {
+        const createdReview = await ReviewModel.create({
+          rating: parseInt(rating),
+          comment: message,
+          product,
+          user,
+        });
+        console.log("review created: ", createdReview);
+        await OrderModel.findByIdAndUpdate(id, { review: true });
+        await ProductModel.findOneAndUpdate(
+          { _id: product },
+          { $push: { reviews: createdReview._id } }
+        );
+        return res.status(201).json({ msg: "review has created successfully" });
+      } catch (error) {
+        return res.status(500).json({ errors: error.message });
+      }
+    } else {
+      return res.status(400).json({ errors: errors.array() });
     }
   }
 }
